@@ -1040,9 +1040,9 @@ export function initMaison(container, options = {}) {
   const ANCHORS = {
     placo: new THREE.Vector3(-2, 1.1, -1.05),
     carrelage: new THREE.Vector3(2.8, 0.1, 0.2),
-    electricite: new THREE.Vector3(-3.7, 1.95, 0.9),
+    electricite: new THREE.Vector3(-3.78, 1.75, 0.9),
     plomberie: new THREE.Vector3(3.45, 1.0, -2.0),
-    climatisation: new THREE.Vector3(0.3, 2.3, -2.0),
+    climatisation: new THREE.Vector3(0, 1.93, -2.4),
   };
   const tagLayer = document.createElement('div');
   tagLayer.className = 'maison-tags';
