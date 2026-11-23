@@ -1,0 +1,10 @@
+.playwright-mcp/
+_test3d.html
+*.log
+.DS_Store
+Thumbs.db
+# Générés à chaque mise en ligne par tools/build_blog.py
+blog/
+sitemap.xml
+robots.txt
+_site/

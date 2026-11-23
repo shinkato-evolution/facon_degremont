@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Façon Degremont — Rénovation intérieure autour de Toulouse</title>
+  <meta name="description" content="Placo, carrelage, électricité, plomberie, climatisation : un seul interlocuteur pour toute votre rénovation intérieure, à Toulouse et ses alentours. Devis gratuit.">
+  <meta name="theme-color" content="#efefef">
+  <link rel="icon" href="assets/logo/logo-mark.png">
+  <meta property="og:title" content="Façon Degremont — Réalisons votre intérieur">
+  <meta property="og:description" content="Un seul interlocuteur pour toute votre rénovation intérieure, autour de Toulouse.">
+  <meta property="og:image" content="assets/logo/facon_degremont_logo.png">
+  <link rel="preload" href="assets/fonts/josefin-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Façon Degremont","slogan":"Réalisons votre intérieur","areaServed":"Toulouse et alentours","image":"assets/logo/facon_degremont_logo.png","knowsAbout":["Placo","Carrelage","Électricité","Plomberie","Climatisation"]}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <header class="top" id="top">
+    <a class="brand" href="#top" aria-label="Façon Degremont, retour en haut">
+      <img src="assets/logo/logo-mark.png" alt="" width="40" height="40">
+      <span class="brand-name">Façon Degremont</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Menu principal">
+      <a href="#metiers">Nos métiers</a>
+      <a href="#etapes">Comment ça se passe&nbsp;?</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="blog/">Nos conseils</a>
+      <a href="#contact" class="btn btn-small">Demander un devis</a>
+    </nav>
+    <a class="call" data-tel href="tel:" aria-label="Appeler">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+    </a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span></button>
+  </header>
+
+  <main id="contenu">
+    <!-- 1. Accueil + maison 3D interactive -->
+    <section class="hero" id="metiers" aria-labelledby="hero-titre">
+      <div class="hero-text">
+        <h1 id="hero-titre" data-c="titre">Un seul interlocuteur pour toute votre rénovation</h1>
+        <p class="lead" data-c="sous_titre">Placo, carrelage, électricité, plomberie, climatisation : une seule équipe s'occupe de tout, du premier rendez-vous à la remise des clés.</p>
+        <p class="pick-label" id="pick-label">Que souhaitez-vous rénover ?</p>
+        <div class="chips" role="group" aria-labelledby="pick-label">
+          <div class="chips-row">
+            <button class="chip" data-metier="placo" aria-pressed="false"><i class="dot"></i>Placo</button>
+            <button class="chip" data-metier="carrelage" aria-pressed="false"><i class="dot"></i>Carrelage</button>
+            <button class="chip" data-metier="electricite" aria-pressed="false"><i class="dot"></i>Électricité</button>
+          </div>
+          <div class="chips-row">
+            <button class="chip" data-metier="plomberie" aria-pressed="false"><i class="dot"></i>Plomberie</button>
+            <button class="chip" data-metier="climatisation" aria-pressed="false"><i class="dot"></i>Climatisation</button>
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a href="#contact" class="btn">Demander mon devis gratuit</a>
+          <a data-tel href="tel:" class="link-tel" data-c-tel>06 00 00 00 00</a>
+        </div>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="stage-3d" id="maison" aria-hidden="true"></div>
+        <img class="stage-fallback" src="assets/logo/logo-mark.png" alt="" width="320" height="320">
+        <p class="stage-hint" id="stage-hint">Touchez un métier pour visiter la maison</p>
+
+        <aside class="panel" id="panel" aria-live="polite" hidden>
+          <button class="panel-close" id="panel-close" aria-label="Fermer">×</button>
+          <h2 class="panel-title" id="panel-title"></h2>
+          <p class="panel-text" id="panel-text"></p>
+          <div class="panel-photos" id="panel-photos"></div>
+          <a href="#contact" class="panel-link" id="panel-devis">Un projet de ce type ? Parlons-en</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. Pourquoi un seul interlocuteur -->
+    <section class="why" id="pourquoi" aria-labelledby="why-titre">
+      <div class="why-inner">
+        <figure class="boss reveal" id="boss" hidden>
+          <img id="boss-photo" alt="" width="480" height="600" loading="lazy">
+        </figure>
+        <div class="why-text reveal">
+          <h2 id="why-titre" class="why-title">C'est <span data-c="interlocuteur_prenom">votre artisan</span> que vous appelez. Du devis à la fin du chantier.</h2>
+          <p class="why-quote" id="why-quote" hidden></p>
+          <p>Pas cinq artisans à coordonner, pas de standard, pas de « ce n'est pas moi qui m'en occupe ». Le placo, le carrelage, l'électricité, la plomberie et la clim s'enchaînent dans le bon ordre, sous la responsabilité d'une seule personne.</p>
+          <a data-tel href="tel:" class="why-tel" data-c-tel>06 00 00 00 00</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Comment ça se passe -->
+    <section class="steps" id="etapes" aria-labelledby="etapes-titre">
+      <h2 id="etapes-titre" class="title">Comment ça se passe&nbsp;?</h2>
+      <ol class="steps-list" id="steps-list">
+        <li class="step"><span class="step-n">1</span><strong>On vient chez vous</strong><span>On regarde, on écoute ce que vous voulez.</span></li>
+        <li class="step"><span class="step-n">2</span><strong>Vous recevez votre devis</strong><span>Gratuit. Chaque poste écrit en clair, pour savoir ce que vous payez.</span></li>
+        <li class="step"><span class="step-n">3</span><strong>On réalise les travaux</strong><span>Une seule équipe, un chantier propre chaque soir.</span></li>
+        <li class="step"><span class="step-n">4</span><strong>On fait le tour ensemble</strong><span>Vous vérifiez tout avec nous avant de signer la fin.</span></li>
+      </ol>
+    </section>
+
+    <!-- 4. Réalisations -->
+    <section class="works" id="realisations" aria-labelledby="real-titre">
+      <div class="section-head">
+        <h2 id="real-titre" class="title">Nos réalisations</h2>
+        <p class="section-sub">Faites glisser le curseur pour voir l'avant et l'après.</p>
+      </div>
+      <div class="works-grid" id="works-grid"></div>
+      <button class="btn works-all" id="works-all" hidden>Voir toutes nos réalisations</button>
+    </section>
+
+    <!-- 5. Avis -->
+    <section class="reviews" id="avis" aria-labelledby="avis-titre" hidden>
+      <h2 id="avis-titre" class="title">Ils ont rénové avec nous</h2>
+      <div class="reviews-track" id="reviews-track" tabindex="0" aria-label="Avis clients, faites défiler"></div>
+      <div class="reviews-dots" id="reviews-dots"></div>
+    </section>
+
+    <!-- 5 bis. Blog : 3 derniers articles (masqué tant qu'il n'y en a pas) -->
+    <section class="blog-home" id="blog" aria-labelledby="blog-titre" hidden>
+      <div class="section-head">
+        <h2 id="blog-titre" class="title">Nos conseils</h2>
+        <a class="link-more" href="blog/">Tous les articles</a>
+      </div>
+      <div class="blog-grid blog-grid-home" id="blog-grid"></div>
+    </section>
+
+    <!-- 6. Instagram -->
+    <section class="insta" id="instagram" aria-labelledby="insta-titre" hidden>
+      <div class="section-head">
+        <h2 id="insta-titre" class="title">Nos derniers chantiers sur Instagram</h2>
+        <a class="link-more" id="insta-link" href="https://www.instagram.com/" target="_blank" rel="noopener">Suivre Façon Degremont</a>
+      </div>
+      <div id="insta-feed" class="insta-feed"></div>
+    </section>
+
+    <!-- 7. Contact -->
+    <section class="contact" id="contact" aria-labelledby="contact-titre">
+      <div class="contact-intro">
+        <h2 id="contact-titre" class="title">Demandez votre devis</h2>
+        <p>Décrivez votre projet en quelques mots. On vous rappelle pour fixer une visite.</p>
+        <ul class="contact-infos">
+          <li><span>Téléphone</span><a data-tel href="tel:" data-c-tel>06 00 00 00 00</a></li>
+          <li><span>E-mail</span><a data-mail href="mailto:" data-c="email">contact@exemple.fr</a></li>
+          <li><span>Zone</span><b data-c="zone">Toulouse et ses alentours</b></li>
+          <li><span>Horaires</span><b data-c="horaires">Du lundi au vendredi, 8 h – 18 h</b></li>
+        </ul>
+      </div>
+
+      <form class="form" id="form" novalidate>
+        <input type="hidden" name="subject" value="Nouvelle demande de devis — site Façon Degremont">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field"><label for="f-prenom">Prénom et nom</label><input id="f-prenom" name="nom" autocomplete="name" required></div>
+        <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="field"><label for="f-mail">E-mail <small>(facultatif)</small></label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="f-ville">Ville du chantier</label><input id="f-ville" name="ville" autocomplete="address-level2"></div>
+        <fieldset class="field">
+          <legend>Vos travaux</legend>
+          <div class="checks">
+            <label><input type="checkbox" name="travaux" value="Placo">Placo</label>
+            <label><input type="checkbox" name="travaux" value="Carrelage">Carrelage</label>
+            <label><input type="checkbox" name="travaux" value="Électricité">Électricité</label>
+            <label><input type="checkbox" name="travaux" value="Plomberie">Plomberie</label>
+            <label><input type="checkbox" name="travaux" value="Climatisation">Climatisation</label>
+            <label><input type="checkbox" name="travaux" value="Rénovation complète">Rénovation complète</label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="f-msg">Votre projet</label><textarea id="f-msg" name="message" rows="4" placeholder="Ex. : refaire la salle de bain, remplacer la baignoire par une douche…"></textarea></div>
+        <label class="consent"><input type="checkbox" name="consentement" value="oui" required><span>J'accepte que mes informations soient utilisées pour répondre à ma demande de devis. <a href="mentions-legales.html#donnees">En savoir plus</a></span></label>
+        <button class="btn btn-block" type="submit">Envoyer ma demande</button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <a class="foot-logo" href="#top" aria-label="Façon Degremont, retour en haut de la page"><img src="assets/logo/facon_degremont_logo.png" alt="Façon Degremont — Réalisons votre intérieur" width="260" height="260" loading="lazy"></a>
+    <p data-c="zone">Toulouse et ses alentours</p>
+    <p><a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+
+  <!-- Visionneuse photo -->
+  <dialog class="lightbox" id="lightbox" aria-label="Photo en grand">
+    <button class="lb-close" data-lb="close" aria-label="Fermer">×</button>
+    <button class="lb-nav lb-prev" data-lb="prev" aria-label="Photo précédente">‹</button>
+    <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+    <button class="lb-nav lb-next" data-lb="next" aria-label="Photo suivante">›</button>
+  </dialog>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

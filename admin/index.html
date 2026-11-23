@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Espace de gestion — Façon Degremont</title>
+  <link rel="icon" href="../assets/logo/logo-mark.png">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div id="app" aria-live="polite"><p class="chargement">Chargement…</p></div>
+  <div id="toasts" role="status" aria-live="polite"></div>
+  <dialog id="dialogue">
+    <form method="dialog">
+      <p id="dialogue-texte"></p>
+      <div class="dialogue-actions">
+        <button class="bouton bouton-clair" value="non">Annuler</button>
+        <button class="bouton bouton-danger" value="oui" id="dialogue-ok">Supprimer</button>
+      </div>
+    </form>
+  </dialog>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

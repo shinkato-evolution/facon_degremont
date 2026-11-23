@@ -1,0 +1,108 @@
+{
+  "placo": {
+    "nom": "Placo",
+    "promesse": "Des pièces redessinées comme vous les imaginez : une cloison pour gagner une chambre, un plafond refait, des combles enfin habitables.",
+    "photos": [
+      {
+        "image": "/assets/photos/metiers/placo/placo-cloisons-couloir.webp",
+        "legende": "Nouvelles cloisons dans un couloir"
+      },
+      {
+        "image": "/assets/photos/metiers/placo/placo-ouverture-vitree.webp",
+        "legende": "Ouverture créée entre deux pièces"
+      },
+      {
+        "image": "/assets/photos/metiers/placo/placo-plafond-cuisine.webp",
+        "legende": "Plafond refait sous verrière"
+      },
+      {
+        "image": "/assets/photos/metiers/placo/placo-combles.webp",
+        "legende": "Combles transformés en pièces"
+      }
+    ]
+  },
+  "carrelage": {
+    "nom": "Carrelage",
+    "promesse": "Des joints droits et des carreaux qui ne bougent pas, même dix ans après.",
+    "photos": [
+      {
+        "image": "/assets/photos/metiers/carrelage/carrelage-mosaique-douche.webp",
+        "legende": "Douche à l'italienne en mosaïque"
+      },
+      {
+        "image": "/assets/photos/metiers/carrelage/carrelage-douche-pierre.webp",
+        "legende": "Douche effet pierre naturelle"
+      },
+      {
+        "image": "/assets/photos/metiers/carrelage/carrelage-effet-bois.webp",
+        "legende": "Sol effet parquet en salle d'eau"
+      },
+      {
+        "image": "/assets/photos/metiers/carrelage/carrelage-wc.webp",
+        "legende": "Grands carreaux dans les WC"
+      }
+    ]
+  },
+  "electricite": {
+    "nom": "Électricité",
+    "promesse": "Une installation sûre et remise à neuf, des prises et des lumières là où vous en avez vraiment besoin.",
+    "photos": [
+      {
+        "image": "/assets/photos/metiers/electricite/electricite-tableau-neuf.webp",
+        "legende": "Tableau électrique remis à neuf"
+      },
+      {
+        "image": "/assets/photos/metiers/electricite/electricite-cablage.webp",
+        "legende": "Raccordement du tableau"
+      },
+      {
+        "image": "/assets/photos/metiers/electricite/electricite-tableau-2.webp",
+        "legende": "Tableau clair et repéré"
+      }
+    ]
+  },
+  "plomberie": {
+    "nom": "Plomberie",
+    "promesse": "Salle de bain, WC, cuisine : l'eau arrive où il faut.",
+    "photos": [
+      {
+        "image": "/assets/photos/metiers/plomberie/plomberie-wc-suspendu.webp",
+        "legende": "WC suspendu, sol dégagé"
+      },
+      {
+        "image": "/assets/photos/metiers/plomberie/plomberie-meuble-vasque.webp",
+        "legende": "Meuble vasque et WC posés"
+      },
+      {
+        "image": "/assets/photos/metiers/plomberie/plomberie-nourrice.webp",
+        "legende": "Distribution d'eau toute neuve"
+      },
+      {
+        "image": "/assets/photos/metiers/plomberie/plomberie-bati-support.webp",
+        "legende": "Bâti-support avant habillage"
+      }
+    ]
+  },
+  "climatisation": {
+    "nom": "Climatisation",
+    "promesse": "Dormir au frais en août, sans entendre l'appareil. Et du chaud en hiver avec le même.",
+    "photos": [
+      {
+        "image": "/assets/photos/metiers/climatisation/clim-split-chambre.webp",
+        "legende": "Climatisation discrète dans une chambre"
+      },
+      {
+        "image": "/assets/photos/metiers/climatisation/clim-groupes-exterieurs.webp",
+        "legende": "Groupes extérieurs bien rangés"
+      },
+      {
+        "image": "/assets/photos/metiers/climatisation/clim-mise-en-service.webp",
+        "legende": "Mise en service"
+      },
+      {
+        "image": "/assets/photos/metiers/climatisation/clim-entretien.webp",
+        "legende": "Entretien annuel"
+      }
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "items": [
+    {
+      "titre": "",
+      "type": "",
+      "lieu": "",
+      "avant": "",
+      "apres": "",
+      "photos": [],
+      "visible": true
+    },
+    {
+      "titre": "Salle d'eau entièrement refaite",
+      "type": "Rénovation complète — maison ancienne",
+      "lieu": "Mas-d'Auvignon (32)",
+      "avant": "/assets/photos/realisations/mas-avant.webp",
+      "apres": "/assets/photos/realisations/mas-apres.webp",
+      "photos": [
+        {
+          "image": "/assets/photos/realisations/mas-apres-2.webp"
+        },
+        {
+          "image": "/assets/photos/realisations/mas-apres-3.webp"
+        }
+      ],
+      "visible": true
+    },
+    {
+      "titre": "Salle de bain modernisée",
+      "type": "Rénovation salle de bain — appartement",
+      "lieu": "Toulouse et alentours",
+      "avant": "/assets/photos/realisations/sdb-appart-avant.webp",
+      "apres": "/assets/photos/realisations/sdb-appart-apres.webp",
+      "photos": [
+        {
+          "image": "/assets/photos/realisations/sdb-appart-apres-2.webp"
+        }
+      ],
+      "visible": true
+    },
+    {
+      "titre": "Combles aménagés et climatisés",
+      "type": "Aménagement de combles — maison",
+      "lieu": "Mauvezin",
+      "avant": "/assets/photos/realisations/combles-avant.webp",
+      "apres": "/assets/photos/realisations/combles-apres.webp",
+      "photos": [],
+      "visible": true
+    },
+    {
+      "titre": "Douche à l'italienne en mosaïque",
+      "type": "Rénovation salle d'eau — appartement",
+      "lieu": "Toulouse et alentours",
+      "avant": "/assets/photos/realisations/douche-avant.webp",
+      "apres": "/assets/photos/realisations/douche-apres.webp",
+      "photos": [],
+      "visible": true
+    },
+    {
+      "titre": "Salle d'eau effet parquet",
+      "type": "Rénovation salle d'eau — appartement",
+      "lieu": "Toulouse et alentours",
+      "avant": "/assets/photos/realisations/salle-eau-avant.webp",
+      "apres": "/assets/photos/realisations/salle-eau-apres.webp",
+      "photos": [],
+      "visible": true
+    },
+    {
+      "titre": "Plafond refait sous verrière",
+      "type": "Rénovation plafond — cuisine",
+      "lieu": "Toulouse et alentours",
+      "avant": "/assets/photos/realisations/plafond-avant.webp",
+      "apres": "/assets/photos/realisations/plafond-apres.webp",
+      "photos": [],
+      "visible": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "prenom": "Prénom",
+      "lieu": "Ville",
+      "texte": "[Exemple à remplacer] Un seul contact du début à la fin, c'est ce qui nous a décidés. Le chantier était propre tous les soirs.",
+      "visible": false
+    },
+    {
+      "prenom": "Prénom",
+      "lieu": "Ville",
+      "texte": "[Exemple à remplacer] Notre salle de bain est exactement comme on l'avait imaginée, et dans les délais annoncés.",
+      "visible": false
+    },
+    {
+      "prenom": "Prénom",
+      "lieu": "Ville",
+      "texte": "[Exemple à remplacer] Toujours joignable, toujours une réponse claire. On n'a jamais eu à courir après personne.",
+      "visible": false
+    }
+  ]
+}
