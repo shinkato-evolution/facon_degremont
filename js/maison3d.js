@@ -180,11 +180,11 @@ export function initMaison(container, options = {}) {
 
   /* --- Rendu --- */
   const renderer = new THREE.WebGLRenderer({
-    antialias: !mobile,
+    antialias: true, // sans lissage, les contours anthracite sont crénelés sur téléphone
     alpha: true,
-    powerPreference: mobile ? 'low-power' : 'high-performance',
+    powerPreference: 'default',
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); // 2 = net sur les écrans de téléphone (la maison est légère à dessiner)
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setClearColor(0x000000, 0);
   const canvas = renderer.domElement;

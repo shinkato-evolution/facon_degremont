@@ -321,3 +321,9 @@ h1 { font-size: clamp(2rem, 7.5vw, 3.6rem); line-height: 1.05; font-weight: 700;
 .post-cta { display: grid; gap: 10px; justify-items: start; margin-top: 44px; padding: 22px 20px; background: var(--blanc); border: var(--trait); border-radius: var(--r); box-shadow: 8px 8px 0 var(--bleu); }
 .post-cta strong { font: 700 1.3rem "Josefin", sans-serif; color: var(--encre); }
 .post-card img { height: auto; }
+
+/* Téléphone : la phrase d'aide sous la maison ne touche plus le modèle 3D */
+@media (max-width: 959px) {
+  .stage-3d { bottom: 40px; }
+  .stage-hint { bottom: 8px; }
+}
