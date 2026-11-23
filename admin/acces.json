@@ -1,0 +1,14 @@
+{
+  "owner": "shinkato-evolution",
+  "repo": "facon_degremont",
+  "branch": "main",
+  "comptes": [
+    {
+      "identifiant": "Alex",
+      "sel": "Ahs5ry1s4hYoHvWYferFYQ==",
+      "iv": "H3BygmMjgTw78bov",
+      "jeton": "IXqgIp+wrB+3QP7QTVdww9ZHDdd/b4f6yaPARM06AwqaLm50KELmKsOwUwq62CzjSXTDAGZ8PSzwyAtO3j711ap0XkYAzlWj4WNYnh2ZSVl4r4QyuVadvhEnvrBA0ywLVy+P/vjX7rlmrE0HZw==",
+      "iterations": 600000
+    }
+  ]
+}
