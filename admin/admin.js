@@ -274,8 +274,9 @@ function fichiers(d) {
   const f = {
     'content/site.json': JSON.stringify(d.site, null, 2) + '\n',
     'content/metiers.json': JSON.stringify(d.metiers, null, 2) + '\n',
-    'content/realisations.json': JSON.stringify(d.realisations, null, 2) + '\n',
-    'content/avis.json': JSON.stringify(d.avis, null, 2) + '\n',
+    // Les fiches restées vides (chantier ou avis ajouté puis abandonné) ne sont jamais publiées.
+    'content/realisations.json': JSON.stringify({ ...d.realisations, items: d.realisations.items.filter((r) => r.titre?.trim() || r.avant || r.apres) }, null, 2) + '\n',
+    'content/avis.json': JSON.stringify({ ...d.avis, items: d.avis.items.filter((x) => x.texte?.trim()) }, null, 2) + '\n',
   };
   for (const a of d.articles) f[`content/blog/${a.slug}.md`] = ecrireArticle(a);
   return f;

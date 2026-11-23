@@ -146,7 +146,7 @@ async function lancer3D() {
 
 /* ---------- Réalisations (avant / après) ---------- */
 function rendreRealisations(data) {
-  const items = (data?.items || []).filter((r) => r.visible !== false);
+  const items = (data?.items || []).filter((r) => r.visible !== false && (r.titre || r.avant || r.apres));
   $('#works-grid').innerHTML = items
     .map((r, n) => {
       const ba = r.avant && r.apres;
