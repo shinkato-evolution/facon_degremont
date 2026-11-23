@@ -327,3 +327,13 @@ h1 { font-size: clamp(2rem, 7.5vw, 3.6rem); line-height: 1.05; font-weight: 700;
   .stage-3d { bottom: 40px; }
   .stage-hint { bottom: 8px; }
 }
+
+/* Étiquettes des métiers sur la maison 3D */
+.maison-tags { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.maison-tags-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.maison-tags-lines line { stroke: var(--anthracite); stroke-width: 1.5; stroke-linecap: round; transition: opacity .3s; }
+.maison-tags-lines circle { fill: var(--anthracite); transition: opacity .3s; }
+.maison-tag { position: absolute; left: 0; top: 0; padding: 4px 10px; background: #fff; color: var(--anthracite); border: 2px solid var(--anthracite); border-radius: 999px; box-shadow: 2px 2px 0 var(--anthracite); font-size: .8rem; font-weight: 700; line-height: 1.2; white-space: nowrap; opacity: 0; transition: opacity .3s; }
+.maison-tag.on { opacity: 1; }
+.no-3d .maison-tags { display: none; }
+@media (max-width: 959px) { .maison-tag { padding: 2px 8px; border-width: 1.5px; box-shadow: 1px 1px 0 var(--anthracite); font-size: .72rem; } .maison-tags-lines line { stroke-width: 1.25; } }

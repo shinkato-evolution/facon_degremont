@@ -993,6 +993,7 @@ export function initMaison(container, options = {}) {
     updateFades(dt);
     updateCamera(dt);
     renderer.render(scene, camera);
+    updateLabels();
     dirty = false;
 
     // En mouvement réduit, on ne redessine que sur demande.
@@ -1026,6 +1027,91 @@ export function initMaison(container, options = {}) {
   io.observe(container);
   const onVis = () => { if (!document.hidden) kick(); };
   document.addEventListener('visibilitychange', onVis);
+
+  /* ================================================================ */
+  /* 6 bis. Étiquettes des métiers                                     */
+  /*  - ordinateur : un petit encadré au-dessus du métier survolé       */
+  /*  - téléphone : tous les noms, reliés à la maison par un petit trait */
+  /* ================================================================ */
+  const LABELS = {
+    placo: 'Placo', carrelage: 'Carrelage', electricite: 'Électricité',
+    plomberie: 'Plomberie', climatisation: 'Climatisation',
+  };
+  const ANCHORS = {
+    placo: new THREE.Vector3(-2, 1.1, -1.05),
+    carrelage: new THREE.Vector3(2.8, 0.1, 0.2),
+    electricite: new THREE.Vector3(-3.7, 1.35, 0.9),
+    plomberie: new THREE.Vector3(3.45, 1.0, -2.0),
+    climatisation: new THREE.Vector3(0, 1.6, -2.1),
+  };
+  const tagLayer = document.createElement('div');
+  tagLayer.className = 'maison-tags';
+  tagLayer.setAttribute('aria-hidden', 'true');
+  const NS = 'http://www.w3.org/2000/svg';
+  const tagSvg = document.createElementNS(NS, 'svg');
+  tagSvg.setAttribute('class', 'maison-tags-lines');
+  tagLayer.appendChild(tagSvg);
+  const tags = {};
+  ZONES.forEach((z) => {
+    const line = document.createElementNS(NS, 'line');
+    const dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('r', '3');
+    tagSvg.append(line, dot);
+    const el = document.createElement('span');
+    el.className = 'maison-tag';
+    el.textContent = LABELS[z];
+    tagLayer.appendChild(el);
+    tags[z] = { el, line, dot, w: 0, h: 0 };
+  });
+  container.appendChild(tagLayer);
+  const _tp = new THREE.Vector3();
+
+  function updateLabels() {
+    const visibles = !introDone || active ? [] : mobile ? ZONES : hover ? [hover] : [];
+    const place = [];
+    for (const z of ZONES) {
+      const t = tags[z];
+      const on = visibles.includes(z);
+      t.el.classList.toggle('on', on);
+      t.line.style.opacity = t.dot.style.opacity = on ? 1 : 0;
+      if (!on) continue;
+      if (!t.w) { t.w = t.el.offsetWidth; t.h = t.el.offsetHeight; }
+      _tp.copy(ANCHORS[z]).applyMatrix4(root.matrixWorld).project(camera);
+      const sx = (_tp.x * 0.5 + 0.5) * viewW;
+      const sy = (-_tp.y * 0.5 + 0.5) * viewH;
+      // Côté vers lequel le trait sort : gauche, droite ou haut (pour le centre).
+      const rel = (sx - viewW / 2) / viewW;
+      const side = mobile && Math.abs(rel) > 0.04 ? (rel < 0 ? -1 : 1) : 0;
+      place.push({ z, t, sx, sy, side });
+    }
+    // Téléphone : on évite que deux noms se superposent (colonne gauche / droite / haut).
+    if (mobile) {
+      for (const side of [-1, 0, 1]) {
+        const col = place.filter((p) => p.side === side).sort((a, b) => a.sy - b.sy);
+        let minY = 4;
+        for (const p of col) {
+          p.ty = Math.max(minY, Math.min(viewH - 30, p.sy - (side === 0 ? 40 : 26)));
+          minY = p.ty + 22;
+        }
+      }
+    }
+    for (const p of place) {
+      const { t, sx, sy, side } = p;
+      let x, y;                                   // coin haut-gauche de l'étiquette
+      if (!mobile) { x = sx - t.w / 2; y = sy - 46; }
+      else if (side === 0) { x = sx - t.w / 2; y = p.ty; }
+      else { x = side < 0 ? sx - 24 - t.w : sx + 24; y = p.ty; }
+      x = Math.max(4, Math.min(viewW - t.w - 4, x));
+      y = Math.max(4, y);
+      t.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      // Le trait relie le point de la maison au bord le plus proche de l'étiquette.
+      const ex = Math.max(x, Math.min(sx, x + t.w));
+      const ey = y + t.h / 2 > sy ? y : y + t.h;
+      t.line.setAttribute('x1', sx.toFixed(1)); t.line.setAttribute('y1', sy.toFixed(1));
+      t.line.setAttribute('x2', ex.toFixed(1)); t.line.setAttribute('y2', ey.toFixed(1));
+      t.dot.setAttribute('cx', sx.toFixed(1)); t.dot.setAttribute('cy', sy.toFixed(1));
+    }
+  }
 
   /* ================================================================ */
   /* 7. Pointeur : survol, clic/tap, glisser horizontal                */
@@ -1125,6 +1211,7 @@ export function initMaison(container, options = {}) {
   function destroy() {
     if (destroyed) return;
     destroyed = true;
+    tagLayer.remove();
     if (raf) cancelAnimationFrame(raf);
     raf = 0;
     ro.disconnect();
