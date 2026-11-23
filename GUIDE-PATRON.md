@@ -37,6 +37,9 @@ Uniquement des avis réels, avec l'accord de la personne. Les guillemets s'ajout
 Le formulaire envoie un e-mail bien présenté (nom, téléphone, travaux, message, bouton « Appeler ») dans votre boîte Gmail. Aucun service tiers : un petit script Google, rattaché à votre compte. À faire une seule fois :
 1. Avec le compte Gmail qui doit recevoir les demandes, ouvrir **script.google.com** → **Nouveau projet**.
 2. Effacer le code d'exemple, coller tout le contenu du fichier `tools/formulaire-devis.gs`, puis **Enregistrer**.
+   Puis roue dentée (**Paramètres du projet**) → cocher **Afficher le fichier manifeste « appsscript.json »**, ouvrir ce fichier et y coller le contenu de `tools/appsscript.json` (il donne la permission d'envoyer des e-mails).
+   Ensuite, choisir la fonction **`test`** dans la liste du haut → **▶ Exécuter** → **Examiner les autorisations** (voir étape 4). Un e-mail d'essai arrive : c'est la preuve que tout marche.
+   **Important** : faire ces étapes dans une **fenêtre de navigation privée connectée à un seul compte Google**. Avec plusieurs comptes ouverts, la fenêtre d'autorisation échoue sans message et l'envoi reste impossible.
 3. **Déployer** → **Nouveau déploiement** → roue dentée → **Application Web**. Régler **Exécuter en tant que : Moi** et **Qui a accès : Tout le monde**, puis **Déployer**.
 4. Google demande d'autoriser l'accès : **Autoriser** → choisir le compte → si « Google n'a pas validé cette application » apparaît, cliquer **Paramètres avancés** puis **Accéder à … (non sécurisé)** : c'est normal, c'est votre propre script.
 5. Copier l'**URL de l'application Web** (elle finit par `/exec`), puis dans l'espace de gestion : **Coordonnées et textes** → **Réglages techniques** → **Adresse du script d'envoi des devis** → **Publier**.
