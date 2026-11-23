@@ -6,7 +6,7 @@
 3. Sur votre téléphone ou votre ordinateur personnel, cochez **Rester connecté sur cet appareil** pour ne plus avoir à le retaper.
 
 ## Comment ça marche
-- L'accueil propose 5 grandes cases : **Mes chantiers**, **Mes métiers**, **Nos conseils**, **Avis clients**, **Coordonnées et textes**, plus trois raccourcis (ajouter un chantier, écrire un conseil, ajouter un avis).
+- L'accueil propose 5 grandes cases : **Mes chantiers**, **Mes métiers**, **Nos conseils**, **Avis clients**, **Coordonnées et textes**. Dans chaque rubrique, le bouton **Ajouter** est en haut. Ce que vous ajoutez reste un **brouillon invisible** sur le site tant que vous n'activez pas **Afficher sur le site** ; une fiche laissée vide disparaît toute seule.
 - À droite (ou avec le bouton **Voir l'aperçu** sur téléphone), l'**aperçu** montre la vraie page du site avec vos changements, **avant même de publier**. Les boutons **Ordinateur / Téléphone** changent la taille d'écran.
 - Quand vous modifiez quelque chose, une barre apparaît en bas : **Publier sur le site** envoie tout d'un coup. **Le site se met à jour en 1 à 2 minutes.** **Annuler** efface ce qui n'est pas encore publié.
 - Les photos sont réduites automatiquement : prenez-les directement avec le téléphone, sans retouche.

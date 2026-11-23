@@ -243,3 +243,7 @@ dialog p { margin: 0 0 18px; font-weight: 600; color: var(--encre); }
 .ba-tag { position: absolute; top: 10px; z-index: 1; padding: 3px 10px; font-size: .78rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; border: 2px solid var(--anthracite); border-radius: 4px; pointer-events: none; }
 .ba-tag-apres { left: 10px; background: var(--bleu); }
 .ba-tag-avant { right: 10px; background: var(--blanc); }
+
+.titre-ico { display: inline-grid; place-items: center; width: 40px; height: 40px; margin-right: 12px; vertical-align: -6px; color: var(--bleu-fonce); background: var(--bleu-pale); border-radius: 50%; }
+.titre-ico .ico { width: 22px; height: 22px; stroke-width: 1.8; }
+.ajout-haut { margin: 0 0 22px; }

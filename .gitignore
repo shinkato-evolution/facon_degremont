@@ -4,7 +4,7 @@ _test3d.html
 .DS_Store
 Thumbs.db
 # Générés à chaque mise en ligne par tools/build_blog.py
-blog/
+/blog/
 sitemap.xml
 robots.txt
 _site/

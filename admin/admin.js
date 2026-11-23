@@ -278,7 +278,7 @@ function fichiers(d) {
     'content/realisations.json': JSON.stringify({ ...d.realisations, items: d.realisations.items.filter((r) => r.titre?.trim() || r.avant || r.apres) }, null, 2) + '\n',
     'content/avis.json': JSON.stringify({ ...d.avis, items: d.avis.items.filter((x) => x.texte?.trim()) }, null, 2) + '\n',
   };
-  for (const a of d.articles) f[`content/blog/${a.slug}.md`] = ecrireArticle(a);
+  for (const a of d.articles.filter((x) => !x.neuf || x.titre?.trim() || x.corps?.trim())) f[`content/blog/${a.slug}.md`] = ecrireArticle(a);
   return f;
 }
 
@@ -501,7 +501,7 @@ function interrupteur(k, label, aide = '') {
 }
 
 let derniereAdresse = '';
-function page({ titre, sousTitre = '', retour = '', contenu, apercu = false }) {
+function page({ titre, ico = '', sousTitre = '', retour = '', contenu, apercu = false }) {
   const nonPublie = modifications().length > 0;
   const memePage = derniereAdresse === location.hash;
   const y = scrollY;
@@ -518,7 +518,7 @@ function page({ titre, sousTitre = '', retour = '', contenu, apercu = false }) {
   <main class="contenu ${apercu ? 'avec-apercu' : ''}">
     <div class="colonne">
       ${retour ? `<a class="retour" href="${retour}">← Retour</a>` : ''}
-      <h1>${h(titre)}</h1>
+      <h1>${ico ? `<span class="titre-ico">${icone(ico)}</span>` : ''}${h(titre)}</h1>
       ${sousTitre ? `<p class="sous-titre">${sousTitre}</p>` : ''}
       <div id="vue">${contenu}</div>
     </div>
@@ -550,14 +550,10 @@ function vueAccueil() {
     { href: '#/coordonnees', ic: 'coordonnees', titre: 'Coordonnées et textes', texte: 'Téléphone, e-mail, phrases de l\'accueil', compte: h(d.site.telephone || '') },
   ];
   page({
-    titre: 'Bonjour 👋',
+    titre: 'Bonjour',
+    ico: 'chantier',
     sousTitre: 'Que voulez-vous modifier sur votre site ?',
     contenu: `
-    <div class="actions-rapides">
-      <a class="bouton" href="#/chantiers/nouveau">${icone('plus')} Ajouter un chantier</a>
-      <a class="bouton bouton-clair" href="#/conseils/nouveau">${icone('plus')} Écrire un conseil</a>
-      <a class="bouton bouton-clair" href="#/avis/nouveau">${icone('plus')} Ajouter un avis</a>
-    </div>
     <div class="tuiles">
       ${tuiles.map((t) => `<a class="tuile" href="${t.href}">
         <span class="tuile-visuel">${t.photo ? `<img src="${h(img(t.photo, true))}" alt="" loading="lazy">` : icone(t.ic)}</span>
@@ -575,8 +571,8 @@ function vueChantiers() {
     titre: 'Mes chantiers',
     sousTitre: 'Les 3 premiers apparaissent sur l\'accueil, les autres derrière « Voir tous les chantiers ». Utilisez les flèches pour changer l\'ordre.',
     retour: '#/',
-    contenu: `<div class="grille">
-      <a class="carte carte-ajout" href="#/chantiers/nouveau">${icone('plus')}<strong>Ajouter un chantier</strong><span>Photo avant, photo après, et c'est en ligne.</span></a>
+    contenu: `<p class="ajout-haut"><a class="bouton" href="#/chantiers/nouveau">${icone('plus')} Ajouter un chantier</a></p>
+    <div class="grille">
       ${items.map((r, i) => `<div class="carte">
         <a class="carte-lien" href="#/chantiers/${i}">
           <span class="carte-img duo">${r.avant ? `<img src="${h(img(r.avant, true))}" alt="">` : '<span class="vide">Avant ?</span>'}${r.apres ? `<img src="${h(img(r.apres, true))}" alt="">` : '<span class="vide">Après ?</span>'}</span>
@@ -606,13 +602,15 @@ function brancherOrdre(vue, liste) {
 function vueChantier(i) {
   const items = ETAT.data.realisations.items;
   if (i === 'nouveau') {
-    items.unshift({ titre: '', type: '', lieu: '', avant: '', apres: '', photos: [], visible: true });
+    items.unshift({ titre: '', type: '', lieu: '', avant: '', apres: '', photos: [], visible: false });
+    ETAT.garder = items[0];
     modifie({ apercu: false });
     location.replace('#/chantiers/0');
     return;
   }
   const r = items[+i];
   if (!r) return location.replace('#/chantiers');
+  ETAT.garder = r;
   r.photos ||= [];
   const vue = page({
     titre: r.titre || 'Nouveau chantier',
@@ -643,7 +641,7 @@ function vueChantier(i) {
       ${galerie(r.photos, false)}
     </section>
     <section class="bloc">
-      ${interrupteur('visible', 'Afficher sur le site', 'Décochez pour cacher ce chantier sans le supprimer.')}
+      ${interrupteur('visible', 'Afficher sur le site', 'Désactivé = brouillon : gardé ici, pas visible sur le site. Activez quand c\'est prêt.')}
       <button type="button" class="bouton bouton-danger" id="supprimer">Supprimer ce chantier</button>
     </section>`,
   });
@@ -752,8 +750,8 @@ function vueConseils() {
     titre: 'Nos conseils',
     sousTitre: 'Chaque article répond à une question que se posent vos clients. Google les adore.',
     retour: '#/',
-    contenu: `<div class="grille">
-      <a class="carte carte-ajout" href="#/conseils/nouveau">${icone('plus')}<strong>Écrire un nouveau conseil</strong><span>Un titre, une photo, quelques paragraphes.</span></a>
+    contenu: `<p class="ajout-haut"><a class="bouton" href="#/conseils/nouveau">${icone('plus')} Écrire un conseil</a></p>
+    <div class="grille">
       ${a.map((x) => `<a class="carte carte-lien" href="#/conseils/${h(x.slug)}">
         <span class="carte-img">${x.image ? `<img src="${h(img(x.image))}" alt="">` : '<span class="vide">Pas de photo</span>'}</span>
         <span class="carte-corps"><strong>${h(x.titre || 'Sans titre')}</strong><span>${h(dateFr(x.date))}</span>
@@ -768,13 +766,15 @@ function vueConseil(s) {
   if (s === 'nouveau') {
     let n = 1;
     while (liste.some((x) => x.slug === `nouveau-conseil-${n}`)) n++;
-    liste.unshift({ slug: `nouveau-conseil-${n}`, titre: '', date: aujourdhui(), description: '', image: '', publie: true, corps: '', neuf: true });
+    liste.unshift({ slug: `nouveau-conseil-${n}`, titre: '', date: aujourdhui(), description: '', image: '', publie: false, corps: '', neuf: true });
+    ETAT.garder = liste[0];
     modifie({ apercu: false });
     location.replace(`#/conseils/nouveau-conseil-${n}`);
     return;
   }
   const a = liste.find((x) => x.slug === s);
   if (!a) return location.replace('#/conseils');
+  ETAT.garder = a;
   const vue = page({
     titre: a.titre || 'Nouveau conseil',
     retour: '#/conseils',
@@ -804,7 +804,7 @@ function vueConseil(s) {
     </section>
     <section class="bloc">
       ${champ('date', 'Date de l\'article', { type: 'date' })}
-      ${interrupteur('publie', 'Visible sur le site', 'Décochez pour le garder en brouillon.')}
+      ${interrupteur('publie', 'Visible sur le site', 'Désactivé = brouillon : gardé ici, pas visible sur le site. Activez quand c\'est prêt.')}
       <button type="button" class="bouton bouton-danger" id="supprimer">Supprimer cet article</button>
     </section>`,
   });
@@ -868,8 +868,8 @@ function vueAvis() {
     titre: 'Avis clients',
     sousTitre: 'Uniquement des avis réels, avec l\'accord de la personne. 5 avis maximum sont affichés.',
     retour: '#/',
-    contenu: `<div class="grille grille-avis">
-      <a class="carte carte-ajout" href="#/avis/nouveau">${icone('plus')}<strong>Ajouter un avis</strong><span>Prénom, ville, et ce que le client a dit.</span></a>
+    contenu: `<p class="ajout-haut"><a class="bouton" href="#/avis/nouveau">${icone('plus')} Ajouter un avis</a></p>
+    <div class="grille grille-avis">
       ${items.map((x, i) => `<div class="carte">
         <a class="carte-lien carte-avis" href="#/avis/${i}">
           <blockquote>« ${h((x.texte || '').slice(0, 160))}${(x.texte || '').length > 160 ? '…' : ''} »</blockquote>
@@ -886,13 +886,15 @@ function vueAvis() {
 function vueUnAvis(i) {
   const items = ETAT.data.avis.items;
   if (i === 'nouveau') {
-    items.unshift({ prenom: '', lieu: '', texte: '', visible: true });
+    items.unshift({ prenom: '', lieu: '', texte: '', visible: false });
+    ETAT.garder = items[0];
     modifie({ apercu: false });
     location.replace('#/avis/0');
     return;
   }
   const a = items[+i];
   if (!a) return location.replace('#/avis');
+  ETAT.garder = a;
   const vue = page({
     titre: a.prenom ? `Avis de ${a.prenom}` : 'Nouvel avis',
     retour: '#/avis',
@@ -902,7 +904,7 @@ function vueUnAvis(i) {
       ${champ('prenom', 'Prénom du client', { placeholder: 'Ex. : Sophie' })}
       ${champ('lieu', 'Ville (facultatif)', { placeholder: 'Ex. : Colomiers' })}
       ${champ('texte', 'Son avis, avec ses mots', { lignes: 5, aide: 'Les guillemets s\'ajoutent tout seuls.' })}
-      ${interrupteur('visible', 'Afficher sur le site')}
+      ${interrupteur('visible', 'Afficher sur le site', 'Désactivé = brouillon : gardé ici, pas visible sur le site. Activez quand c\'est prêt.')}
       <button type="button" class="bouton bouton-danger" id="supprimer">Supprimer cet avis</button>
     </section>
     <p class="astuce">💡 La section « avis » apparaît sur le site dès qu'au moins un avis est affiché.</p>`,
@@ -997,9 +999,21 @@ function vueAcces() {
 
 /* ================= Navigation ================= */
 
+// Une fiche ajoutée puis abandonnée sans rien écrire disparaît toute seule : pas de brouillon vide à trier.
+function nettoyerVides() {
+  const d = ETAT.data;
+  const garde = ETAT.garder;
+  d.realisations.items = d.realisations.items.filter((r) => r === garde || r.titre?.trim() || r.type?.trim() || r.lieu?.trim() || r.avant || r.apres || r.photos?.length);
+  d.avis.items = d.avis.items.filter((x) => x === garde || x.prenom?.trim() || x.lieu?.trim() || x.texte?.trim());
+  d.articles = d.articles.filter((x) => x === garde || !x.neuf || x.titre?.trim() || x.description?.trim() || x.image || x.corps?.trim());
+}
+
 function route() {
   if (!ETAT.data) return;
   const [, section = '', id] = location.hash.replace(/^#/, '').split('/');
+  if (!(id !== undefined && ['chantiers', 'conseils', 'avis'].includes(section))) ETAT.garder = null;
+  nettoyerVides();
+  majBarre();
   cibleApercu = null;
   ({
     '': vueAccueil,
