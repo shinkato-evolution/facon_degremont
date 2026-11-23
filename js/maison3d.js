@@ -1040,9 +1040,9 @@ export function initMaison(container, options = {}) {
   const ANCHORS = {
     placo: new THREE.Vector3(-2, 1.1, -1.05),
     carrelage: new THREE.Vector3(2.8, 0.1, 0.2),
-    electricite: new THREE.Vector3(-3.7, 1.35, 0.9),
+    electricite: new THREE.Vector3(-3.7, 1.95, 0.9),
     plomberie: new THREE.Vector3(3.45, 1.0, -2.0),
-    climatisation: new THREE.Vector3(0, 1.6, -2.1),
+    climatisation: new THREE.Vector3(0.3, 2.3, -2.0),
   };
   const tagLayer = document.createElement('div');
   tagLayer.className = 'maison-tags';
@@ -1090,7 +1090,7 @@ export function initMaison(container, options = {}) {
         const col = place.filter((p) => p.side === side).sort((a, b) => a.sy - b.sy);
         let minY = 4;
         for (const p of col) {
-          p.ty = Math.max(minY, Math.min(viewH - 30, p.sy - (side === 0 ? 40 : 26)));
+          p.ty = Math.max(minY, Math.min(viewH - 30, p.sy + (p.z === 'placo' ? 22 : side === 0 ? -40 : -26)));
           minY = p.ty + 22;
         }
       }
