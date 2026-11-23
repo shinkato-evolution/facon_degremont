@@ -73,7 +73,8 @@ function doPost(e) {
     );
     return reponse_({ ok: true });
   } catch (err) {
-    return reponse_({ ok: false, erreur: 'Erreur interne.' });
+    console.error(err && err.stack ? err.stack : String(err));
+    return reponse_({ ok: false, erreur: 'Erreur interne : ' + String(err) });
   }
 }
 
